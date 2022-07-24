@@ -48,7 +48,7 @@ public class MainViewController implements Initializable{
 	
 	@Override
 	public void initialize(URL uri, ResourceBundle rb) {
-		
+		 
 	}
 	
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) { //keep app stable with synchronized mode
@@ -64,7 +64,7 @@ public class MainViewController implements Initializable{
 			mainVBox.getChildren().add(mainMenu); //add Main Menu
 			mainVBox.getChildren().addAll(newVbox.getChildren()); //return all childrens of newVbox Menu
 			
-			T controller =loader.getController();
+			T controller = loader.getController();
 			initializingAction.accept(controller);
 			
 		}
