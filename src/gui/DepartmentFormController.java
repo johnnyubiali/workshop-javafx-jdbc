@@ -91,10 +91,12 @@ public class DepartmentFormController implements Initializable{
 		ValidationException exception = new ValidationException("Validation error!");
 		
 		obj.setId(Utils.tryParseToInt(txtId.getText()));
+		
 		if(txtName.getText() == null || txtName.getText().trim().equals("")) { // exception to empty fields
 			exception.addError("name", "Field can't be empty");
 		}
 		obj.setName(txtName.getText());
+		
 		if(exception.getErrors().size() > 0) { // if exist errors throw exception
 			throw exception;
 		}
@@ -109,14 +111,14 @@ public class DepartmentFormController implements Initializable{
 	
 	
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
 		
 	}
 	
 	private void initializeNodes() {
 		Constraints.setTextFieldInteger(txtId);
-		Constraints.setTextFieldMaxLength(txtName, 30);
+		Constraints.setTextFieldMaxLength(txtName, 70);
 	}
 	
 	public void updateFormData() {
@@ -130,9 +132,7 @@ public class DepartmentFormController implements Initializable{
 	private void setErrorMessages(Map<String, String> errors) {
 		Set<String> fields = errors.keySet();
 		
-		if(fields.contains("name")){
-			labelErrorName.setText(errors.get("name"));
-		}
+		labelErrorName.setText(fields.contains("name") ? errors.get("name") : "");
 	}
 
 }
